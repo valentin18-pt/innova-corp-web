@@ -1,0 +1,54 @@
+<nav class="bg-gray-50 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
+        <a routerLink="/inicio" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="icons/logo_header.png" class="h-16" alt="Innova Corp Logo" />
+        </a>
+        <div class="flex md:order-2 md:mr-6">
+            <button type="button"
+                class="hidden md:block text-white bg-[#F9A62E] hover:bg-[#e89620] focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-lg px-5 py-2 text-center transition-all duration-200 cursor-pointer">
+                Regístrate
+            </button>
+            <button (click)="toggleMenu()" type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+        </div>
+        <div [class.hidden]="!isMenuOpen"
+            class="items-center justify-between w-full md:flex md:w-auto md:order-1 md:ml-auto md:mr-5">
+            <ul
+                class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-100 md:space-x-10 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-50">
+                <li>
+                    <a routerLink="/inicio" routerLinkActive="md:!border-[#F9A62E]"
+                        [routerLinkActiveOptions]="{exact: true}"
+                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Inicio</a>
+                </li>
+                <li>
+                    <a routerLink="/proyectos" routerLinkActive="md:!border-[#F9A62E]"
+                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Proyectos</a>
+                </li>
+                <li>
+                    <a routerLink="/noticias" routerLinkActive="md:!border-[#F9A62E]"
+                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Noticias</a>
+                </li>
+                <li>
+                    <a routerLink="/nosotros" routerLinkActive="md:!border-[#F9A62E]"
+                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Nosotros</a>
+                </li>
+                <li>
+                    <a routerLink="/contactanos" routerLinkActive="md:!border-[#F9A62E]"
+                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Contáctanos</a>
+                </li>
+                <li class="md:hidden mt-2">
+                    <button type="button"
+                        class="w-full text-white bg-[#F9A62E] hover:bg-[#e89620] focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-lg px-5 py-2 text-center transition-all duration-200">
+                        Regístrate
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

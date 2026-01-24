@@ -1,0 +1,62 @@
+<main class="bg-white pt-16 pb-20">
+    <div class="max-w-screen-xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-20">
+
+            <!-- Noticia Principal (Izquierda) -->
+            <div class="lg:w-2/3">
+                <article>
+                    <h1 class="text-2xl md:text-4xl font-extrabold text-[#00528C] leading-tight mb-4">
+                        {{noticiaPrincipal().titulo}}
+                    </h1>
+                    <p class="text-gray-500 font-medium mb-8 text-lg">
+                        {{noticiaPrincipal().fecha}}
+                    </p>
+
+                    <div class="rounded-3xl overflow-hidden shadow-2xl mb-10 aspect-[16/9]">
+                        <img [src]="noticiaPrincipal().img" [alt]="noticiaPrincipal().titulo"
+                            class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="space-y-6 text-gray-700 text-lg leading-relaxed text-justify whitespace-pre-line">
+                        {{noticiaPrincipal().contenido}}
+                    </div>
+
+                    <div class="mt-10 pt-6 border-t border-gray-100 italic text-gray-500">
+                        Fuente: <a [href]="noticiaPrincipal().fuenteLink" target="_blank"
+                            class="text-[#00528C] font-bold hover:underline">
+                            {{noticiaPrincipal().fuente}}
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Otras Noticias (Derecha - Sidebar) -->
+            <div class="lg:w-1/3">
+                <h2 class="text-2xl font-bold text-[#F9A62E] mb-8">
+                    Más noticias
+                </h2>
+
+                <div class="space-y-8">
+                    <div *ngFor="let noticia of otrasNoticias()" class="group cursor-pointer"
+                        (click)="seleccionarNoticia(noticia.id)">
+                        <div class="flex space-x-4">
+                            <!-- Miniatura pequeña -->
+                            <div class="flex-shrink-0 w-24 h-24 overflow-hidden rounded-2xl shadow-md">
+                                <img [src]="noticia.img" [alt]="noticia.titulo"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <p class="text-[10px] font-bold text-gray-500 uppercase mb-1">{{noticia.fecha}}</p>
+                                <h3
+                                    class="text-base font-bold text-[#012943] group-hover:text-[#00528C] transition-colors line-clamp-2 leading-tight">
+                                    {{noticia.titulo}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
