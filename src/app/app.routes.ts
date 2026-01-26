@@ -7,7 +7,6 @@ import { ContactanosComponent } from './pages/contactanos/contactanos.component'
 
 export const routes: Routes = [
   { path: '', component: InicioComponent },
-  { path: 'inicio', component: InicioComponent },
   { path: 'noticias', component: NoticiasComponent },
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'contactanos', component: ContactanosComponent },

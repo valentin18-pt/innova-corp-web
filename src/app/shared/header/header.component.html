@@ -1,13 +1,13 @@
 <nav class="bg-gray-50 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3">
-        <a routerLink="/inicio" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="icons/logo_header.png" class="h-16" alt="Innova Corp Logo" />
         </a>
         <div class="flex md:order-2 md:mr-6">
-            <button type="button"
+            <a routerLink="/" fragment="registrate"
                 class="hidden md:block text-white bg-[#F9A62E] hover:bg-[#e89620] focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-lg px-5 py-2 text-center transition-all duration-200 cursor-pointer">
                 Regístrate
-            </button>
+            </a>
             <button (click)="toggleMenu()" type="button"
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
                 <span class="sr-only">Open main menu</span>
@@ -22,8 +22,7 @@
             <ul
                 class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-100 md:space-x-10 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-50">
                 <li>
-                    <a routerLink="/inicio" routerLinkActive="md:!border-[#F9A62E]"
-                        [routerLinkActiveOptions]="{exact: true}"
+                    <a routerLink="/" routerLinkActive="md:!border-[#F9A62E]" [routerLinkActiveOptions]="{exact: true}"
                         class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Inicio</a>
                 </li>
                 <li>
@@ -43,10 +42,10 @@
                         class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Contáctanos</a>
                 </li>
                 <li class="md:hidden mt-2">
-                    <button type="button"
-                        class="w-full text-white bg-[#F9A62E] hover:bg-[#e89620] focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-lg px-5 py-2 text-center transition-all duration-200">
+                    <a routerLink="/" fragment="registrate" (click)="isMenuOpen = false"
+                        class="block w-full text-white bg-[#F9A62E] hover:bg-[#e89620] focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-lg px-5 py-2 text-center transition-all duration-200">
                         Regístrate
-                    </button>
+                    </a>
                 </li>
             </ul>
         </div>
