@@ -1,6 +1,12 @@
 <div>
-  <section class="w-full">
-    <img src="images/portada1.webp" alt="Portada" class="w-full h-auto object-cover block">
+  <section class="w-full relative overflow-hidden">
+    <img [src]="portadas[0]" class="w-full h-auto opacity-0 pointer-events-none" aria-hidden="true">
+
+    <div *ngFor="let portada of portadas; let i = index"
+      class="absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out"
+      [class.opacity-100]="i === currentPortadaIndex()" [class.opacity-0]="i !== currentPortadaIndex()">
+      <img [src]="portada" alt="Portada" class="w-full h-full object-cover block">
+    </div>
   </section>
 
   <section class="relative w-full overflow-hidden pb-24 pt-12">
@@ -85,7 +91,9 @@
               <input type="checkbox" id="datosPers"
                 class="w-4 h-4 rounded focus:ring-2 focus:ring-[#F9A62E] bg-white cursor-pointer">
               <label for="datosPers" class="text-white text-sm cursor-pointer select-none">
-                He leído y acepto el <a href="#" class="underline">Tratamiento de mis datos personales</a>
+                He leído y acepto el <a routerLink="/terminos-y-condiciones" target="_blank"
+                  class="underline">Tratamiento de mis datos
+                  personales</a>
               </label>
             </div>
 
@@ -101,13 +109,10 @@
   </section>
   <section class="max-w-screen-xl mx-auto px-4 pt-32 pb-24">
     <h2 class="text-2xl md:text-4xl font-extrabold text-[#012943] text-center mb-16 leading-tight">
-      <span class="text-[#F9A62E]">¡Descubre por qué </span><span class="text-[#00528C]">Innova Corp.</span> <span
-        class="text-[#F9A62E]">es tu mejor
-        opción!</span>
+      <span class="text-[#00528C]">¡Descubre por qué Innova Corp. es tu mejor opción!</span>
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
-      <!-- Bloque 1 -->
       <div class="flex items-center space-x-6 max-w-xl mx-auto">
         <div class="flex-shrink-0 w-20 h-20 bg-[#00528C] rounded-full flex items-center justify-center shadow-lg">
           <img src="icons/nosotros_icono1.webp" alt="Compra segura" class="w-12 h-12 object-contain">
@@ -121,7 +126,6 @@
         </div>
       </div>
 
-      <!-- Bloque 2 -->
       <div class="flex items-center space-x-6 max-w-xl mx-auto">
         <div class="flex-shrink-0 w-20 h-20 bg-[#00528C] rounded-full flex items-center justify-center shadow-lg">
           <img src="icons/nosotros_icono2.webp" alt="Plazos a medida" class="w-12 h-12 object-contain">
@@ -134,7 +138,6 @@
         </div>
       </div>
 
-      <!-- Bloque 3 -->
       <div class="flex items-center space-x-6 max-w-xl mx-auto">
         <div class="flex-shrink-0 w-20 h-20 bg-[#00528C] rounded-full flex items-center justify-center shadow-lg">
           <img src="icons/nosotros_icono3.webp" alt="Proceso transparente" class="w-12 h-12 object-contain">
@@ -148,7 +151,6 @@
         </div>
       </div>
 
-      <!-- Bloque 4 -->
       <div class="flex items-center space-x-6 max-w-xl mx-auto">
         <div class="flex-shrink-0 w-20 h-20 bg-[#00528C] rounded-full flex items-center justify-center shadow-lg">
           <img src="icons/nosotros_icono4.webp" alt="Inversión segura" class="w-12 h-12 object-contain">
@@ -172,13 +174,9 @@
     <div class="relative w-full">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
         <div *ngFor="let cliente of visibleClientes"
-          class="relative group h-[500px] overflow-hidden rounded-3xl shadow-xl transition-all duration-300 mx-auto w-full max-w-[340px]"
-          [ngClass]="animationClass">
+          class="relative group h-[500px] overflow-hidden rounded-3xl shadow-xl transition-all duration-300 mx-auto w-full max-w-[340px]">
           <img [src]="cliente.img" [alt]="cliente.titulo" class="w-full h-full object-cover">
-
-          <!-- Cuadrado en blanco con texto -->
-          <div
-            class="absolute bottom-6 left-6 right-6 bg-white p-6 rounded-3xl shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+          <div class="absolute bottom-6 left-6 right-6 bg-white p-6 rounded-3xl shadow-lg">
             <h4 class="text-xl font-bold text-[#012943] mb-2 text-center">{{cliente.titulo}}</h4>
             <p class="text-gray-600 text-base leading-none text-justify">
               {{cliente.texto}}
@@ -186,10 +184,8 @@
           </div>
         </div>
       </div>
-
-      <!-- Slider controls -->
       <button (click)="prevSlide()" type="button"
-        class="absolute top-1/2 -translate-y-1/2 left-4 -translate-x-1/2 z-40 flex items-center justify-center p-0 cursor-pointer group focus:outline-none">
+        class="absolute top-1/2 -translate-y-1/2 left-4 -translate-x-1/2 z-10 flex items-center justify-center p-0 cursor-pointer group focus:outline-none">
         <span
           class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-400/80 shadow-lg group-hover:bg-gray-500 transition-all">
           <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -201,7 +197,7 @@
       </button>
 
       <button (click)="nextSlide()" type="button"
-        class="absolute top-1/2 -translate-y-1/2 right-4 translate-x-1/2 z-40 flex items-center justify-center p-0 cursor-pointer group focus:outline-none">
+        class="absolute top-1/2 -translate-y-1/2 right-4 translate-x-1/2 z-10 flex items-center justify-center p-0 cursor-pointer group focus:outline-none">
         <span
           class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-400/80 shadow-lg group-hover:bg-gray-500 transition-all">
           <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -217,24 +213,18 @@
   <section class="max-w-screen-xl mx-auto px-4 pt-4 pb-16">
     <div class="bg-[#00528C] rounded-[50px] overflow-hidden shadow-2xl">
       <div class="grid grid-cols-1 lg:grid-cols-5 items-end">
-        <!-- Imagen a la izquierda (columna más estrecha) -->
         <div class="w-full flex justify-start pl-12 lg:pl-20 pt-10 lg:pt-20 lg:col-span-2">
           <img src="images/padres_bien.webp" alt="Familia Innova" class="w-[95%] h-auto">
         </div>
-
-        <!-- Contenido a la derecha (columna más ancha: 3/5 partes) -->
         <div
           class="py-12 md:py-20 px-6 md:px-12 flex flex-col items-center lg:items-start text-left w-full lg:col-span-3">
-          <!-- Rectángulo blanco con título (máximo ancho ahora mayor) -->
           <div class="bg-white rounded-3xl p-6 md:p-8 mb-10 shadow-lg w-full text-center">
             <h2 class="text-3xl md:text-5xl font-bold text-[#00528C] leading-tight">
               ¡Compra hoy tu terreno con Innova Corp.!
             </h2>
           </div>
 
-          <!-- Lista de beneficios vertical (máximo ancho) -->
           <div class="flex flex-col space-y-6 w-full">
-            <!-- Item 1 -->
             <div class="flex items-center space-x-4 text-white">
               <div class="flex-shrink-0 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-md">
                 <svg class="w-3 h-3 text-[#00528C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +236,6 @@
               </p>
             </div>
 
-            <!-- Item 2 -->
             <div class="flex items-center space-x-4 text-white">
               <div class="flex-shrink-0 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-md">
                 <svg class="w-3 h-3 text-[#00528C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +247,6 @@
               </p>
             </div>
 
-            <!-- Item 3 -->
             <div class="flex items-center space-x-4 text-white">
               <div class="flex-shrink-0 w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-md">
                 <svg class="w-3 h-3 text-[#00528C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -280,14 +268,14 @@
       Noticias
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div *ngFor="let noticia of noticias" class="flex flex-col group cursor-pointer max-w-[320px]"
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
+      <div *ngFor="let noticia of noticias" class="flex flex-col group cursor-pointer w-full max-w-[260px]"
         (click)="irANoticia(noticia.id)">
-        <div class="relative aspect-square overflow-hidden rounded-3xl shadow-lg mb-6">
+        <div class="relative aspect-square overflow-hidden rounded-lg shadow-lg mb-4">
           <img [src]="noticia.img" [alt]="noticia.titulo"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+            class="w-full h-full object-cover transition-transform duration-500">
         </div>
-        <h3 class="text-lg font-bold text-[#012943] mb-2 leading-tight group-hover:text-[#00528C] transition-colors">
+        <h3 class="text-base font-bold text-[#012943] mb-2 leading-tight group-hover:text-[#00528C] transition-colors">
           {{noticia.titulo}}
         </h3>
         <p class="text-gray-600 text-sm leading-none">

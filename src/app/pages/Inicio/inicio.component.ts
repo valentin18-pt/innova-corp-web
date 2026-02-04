@@ -1,18 +1,48 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.css']
 })
-export class InicioComponent {
+export class InicioComponent implements OnInit, OnDestroy {
   mostrarInputPrefijo = signal(false);
 
+  portadas = [
+    'images/inicio/portada1.webp',
+    'images/inicio/portada2.webp',
+    'images/inicio/portada3.webp',
+    'images/inicio/portada4.webp',
+    'images/inicio/portada5.webp'
+  ];
+  currentPortadaIndex = signal(0);
+  private intervalId: any;
+
   constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.startAutoPlay();
+  }
+
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  startAutoPlay() {
+    this.intervalId = setInterval(() => {
+      this.nextPortada();
+    }, 6000);
+  }
+
+  nextPortada() {
+    this.currentPortadaIndex.update(idx => (idx + 1) % this.portadas.length);
+  }
 
   onPrefijoChange(event: Event) {
     const select = event.target as HTMLSelectElement;
@@ -66,6 +96,12 @@ export class InicioComponent {
       fecha: '4 de enero del 2026'
     },
     {
+      id: 4,
+      img: 'images/noticias/ulla_coto.webp',
+      titulo: 'Sitio Arqueológico De Ulla Coto De Sapallanga',
+      fecha: '15 de enero del 2026'
+    },
+    {
       id: 5,
       img: 'images/noticias/mirador_sancristobal.webp',
       titulo: 'Mirador Cerro San Cristóbal De Sapallanga',
@@ -74,30 +110,22 @@ export class InicioComponent {
   ];
 
   currentIndex = 0;
-  animationClass = '';
+
 
   nextSlide() {
-    this.animationClass = '';
-    setTimeout(() => {
-      this.animationClass = 'animate-slide-left';
-      if (this.currentIndex < this.clientes.length - 3) {
-        this.currentIndex++;
-      } else {
-        this.currentIndex = 0;
-      }
-    }, 10);
+    if (this.currentIndex < this.clientes.length - 3) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0;
+    }
   }
 
   prevSlide() {
-    this.animationClass = '';
-    setTimeout(() => {
-      this.animationClass = 'animate-slide-right';
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-      } else {
-        this.currentIndex = this.clientes.length - 3;
-      }
-    }, 10);
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = this.clientes.length - 3;
+    }
   }
 
   get visibleClientes() {

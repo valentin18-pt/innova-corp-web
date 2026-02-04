@@ -22,24 +22,84 @@
             <ul
                 class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-100 md:space-x-10 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-50">
                 <li>
-                    <a routerLink="/" routerLinkActive="md:!border-[#F9A62E]" [routerLinkActiveOptions]="{exact: true}"
-                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Inicio</a>
+                    <a routerLink="/" routerLinkActive="md:!border-[#F9A62E] !text-[#012943]"
+                        [routerLinkActiveOptions]="{exact: true}"
+                        class="block py-2 px-3 md:px-0 md:pb-2 text-[#426073] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:text-[#012943] md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Inicio</a>
+                </li>
+                <li class="group" (mouseenter)="enterProjects()" (mouseleave)="leaveProjects()">
+                    <a routerLink="/proyectos" routerLinkActive="md:!border-[#F9A62E] !text-[#012943]"
+                        (click)="closeProjects()"
+                        class="flex items-center w-full py-2 px-3 md:px-0 md:pb-2 text-[#426073] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:text-[#012943] md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none block cursor-pointer">
+                        Proyectos
+                    </a>
+
+                    <div *ngIf="isProjectsOpen" (mouseleave)="leaveProjects()"
+                        class="absolute left-0 top-full w-full z-50">
+
+                        <div class="absolute top-0 left-0 w-full h-screen bg-black/60 -z-10 transition-opacity duration-300"
+                            (click)="closeProjects()" (mouseenter)="leaveProjects()"></div>
+
+                        <div (mouseenter)="enterProjects()" (mouseleave)="leaveProjects()"
+                            class="ml-auto w-full max-w-4xl md:mr-32 bg-white rounded-bl-xl shadow-2xl overflow-hidden animate-fade-in-down border-t border-gray-100">
+                            <div class="px-6 py-5">
+                                <h3 class="text-left text-[#426073] font-bold mb-6 text-lg leading-tight pl-0">ELIGE
+                                    EL
+                                    ESPACIO IDEAL PARA CONSTRUIR TU NUEVO HOGAR</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                                    <a routerLink="/proyectos/circunvalacion" (click)="closeProjects()"
+                                        class="group/item text-left cursor-pointer block">
+                                        <div class="mb-2 transition-all duration-300 w-full relative">
+                                            <div
+                                                class="absolute top-2 left-2 bg-white px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md z-10 border border-gray-100">
+                                                <svg class="w-4 h-4 text-[#00528C]" fill="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                                </svg>
+                                                <span
+                                                    class="text-[#00528C] text-[14px] font-medium tracking-tight leading-none">Sapallanga</span>
+                                            </div>
+                                            <img src="images/proyectos/circunvalacion/opcion_header.webp"
+                                                alt="Urb. Villa Circunvalacion" class="w-full h-auto block rounded-lg">
+                                        </div>
+                                        <p class="font-bold text-[#00528C] text-sm transition-colors duration-200">
+                                            Urb. Villa Circunvalacion</p>
+                                    </a>
+                                    <a routerLink="/proyectos/eucaliptos" (click)="closeProjects()"
+                                        class="group/item text-left cursor-pointer block">
+                                        <div class="mb-2 transition-all duration-300 w-full relative">
+                                            <div
+                                                class="absolute top-2 left-2 bg-white px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md z-10 border border-gray-100">
+                                                <svg class="w-4 h-4 text-[#00528C]" fill="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                                                </svg>
+                                                <span
+                                                    class="text-[#00528C] text-[14px] font-medium tracking-tight leading-none">Sapallanga</span>
+                                            </div>
+                                            <img src="images/proyectos/eucaliptos/opcion_header.webp"
+                                                alt="Residencial Los Eucaliptos" class="w-full h-auto block rounded-lg">
+                                        </div>
+                                        <p class="font-bold text-[#00528C] text-sm transition-colors duration-200">
+                                            Residencial Los Eucaliptos</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li>
-                    <a routerLink="/proyectos" routerLinkActive="md:!border-[#F9A62E]"
-                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Proyectos</a>
+                    <a routerLink="/noticias" routerLinkActive="md:!border-[#F9A62E] !text-[#012943]"
+                        class="block py-2 px-3 md:px-0 md:pb-2 text-[#426073] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:text-[#012943] md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Noticias</a>
                 </li>
                 <li>
-                    <a routerLink="/noticias" routerLinkActive="md:!border-[#F9A62E]"
-                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Noticias</a>
+                    <a routerLink="/nosotros" routerLinkActive="md:!border-[#F9A62E] !text-[#012943]"
+                        class="block py-2 px-3 md:px-0 md:pb-2 text-[#426073] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:text-[#012943] md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Nosotros</a>
                 </li>
                 <li>
-                    <a routerLink="/nosotros" routerLinkActive="md:!border-[#F9A62E]"
-                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Nosotros</a>
-                </li>
-                <li>
-                    <a routerLink="/contactanos" routerLinkActive="md:!border-[#F9A62E]"
-                        class="block py-2 px-3 md:px-0 md:pb-1 text-[#012943] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Contáctanos</a>
+                    <a routerLink="/contactanos" routerLinkActive="md:!border-[#F9A62E] !text-[#012943]"
+                        class="block py-2 px-3 md:px-0 md:pb-2 text-[#426073] text-base md:border-b-[3px] md:border-transparent hover:bg-gray-300 md:hover:bg-transparent md:hover:text-[#012943] md:hover:border-[#F9A62E] transition-all duration-200 rounded md:rounded-none">Contáctanos</a>
                 </li>
                 <li class="md:hidden mt-2">
                     <a routerLink="/" fragment="registrate" (click)="isMenuOpen = false"

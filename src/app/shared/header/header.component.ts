@@ -11,8 +11,32 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class HeaderComponent {
   isMenuOpen = false;
+  isProjectsOpen = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeTimeout: any;
+
+  toggleProjects() {
+    this.isProjectsOpen = !this.isProjectsOpen;
+  }
+
+  closeProjects() {
+    this.isProjectsOpen = false;
+  }
+
+  enterProjects() {
+    if (this.closeTimeout) {
+      clearTimeout(this.closeTimeout);
+    }
+    this.isProjectsOpen = true;
+  }
+
+  leaveProjects() {
+    this.closeTimeout = setTimeout(() => {
+      this.isProjectsOpen = false;
+    }, 100);
   }
 }
