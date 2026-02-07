@@ -15,7 +15,7 @@
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <p class="details">Calle Los Eucaliptos, La punta, Sapallanga, Huancayo Peru</p>
+                    <p class="details">Calle Los Eucaliptos, La punta, Sapallanga, Huancayo</p>
                 </div>
                 <div class="details-row">
                     <svg class="detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -23,7 +23,7 @@
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
-                    <p class="details">Lunes a Domingo de 9:00 AM - 6:00 PM</p>
+                    <p class="details">Lunes a Sábados de 9:00 AM - 5:00 PM</p>
                 </div>
             </div>
             <div class="info-right"></div>
@@ -57,7 +57,8 @@
                         brindarte un entorno tranquilo y seguro, con áreas verdes, espacios recreativos y zonas
                         diseñadas para el bienestar y la comodidad de tu familia.</p>
 
-                    <p>Si estás buscando lotes en venta en Huancayo con una ubicación estratégica y gran potencial de
+                    <p>Si estás buscando lotes en venta en Sapallanga - La Punta con una ubicación estratégica y gran
+                        potencial de
                         valorización, Residencial Eucaliptos es una excelente oportunidad. Ofrecemos una atractiva
                         propuesta inmobiliaria, ideal tanto para quienes desean construir su hogar como para quienes
                         buscan una inversión segura y rentable a futuro.</p>
@@ -73,11 +74,16 @@
                                 <img src="images/proyectos/circunvalacion/plano_boton.webp" alt="Ver plano"
                                     class="plano-img">
                                 <div class="plano-overlay">
-                                    <button class="plano-explorar-btn">Explorar plano</button>
+                                    <button class="plano-explorar-btn" (click)="togglePlano(true)">Explorar
+                                        plano</button>
                                 </div>
                             </div>
                         </div>
                     </section>
+
+                    @if (showPlano()) {
+                    <app-eucaliptos-plano (close)="togglePlano(false)"></app-eucaliptos-plano>
+                    }
 
                     <!-- Ubicación Section -->
                     <section class="detail-section" id="ubicacion">
@@ -88,15 +94,53 @@
                                 <h4 class="loc-subtitle">Barrio Tupac - Sapallanga</h4>
                                 <ul class="loc-list">
                                     <li>A 5 min de la calle Real</li>
-                                    <li>5 minutos del plaza</li>
-                                    <li>1 cuadra a mallplaza</li>
+                                    <li>A 4 cuadras del palacio municipal</li>
+                                    <li>Acceso automovilístico</li>
                                 </ul>
                             </div>
                             <div class="ubicacion-image">
-                                <img src="images/proyectos/circunvalacion/ubicacion.webp" alt="Mapa de ubicación"
-                                    class="map-image">
+                                <img src="images/proyectos/eucaliptos/croquis.webp" alt="Mapa de ubicación"
+                                    class="map-image clickable-image" (click)="toggleModal(true)">
                             </div>
                         </div>
+
+                        @if (showCroquis()) {
+                        <div class="modal-overlay" (click)="toggleModal(false)">
+                            <div class="modal-content-croquis" (click)="$event.stopPropagation()">
+                                <!-- Left Section: Location and Button -->
+                                <!-- Left Section: Location and Button -->
+                                <div class="modal-side-content">
+                                    <div class="modal-text-block">
+                                        <p class="modal-location-label">Ubicación:</p>
+                                        <p class="modal-location-subtitle">Calle Los Eucaliptos, La punta,
+                                            Sapallanga, Huancayo</p>
+                                    </div>
+                                    <button class="btn-como-llegar" (click)="openGoogleMaps()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                        Cómo llegar
+                                    </button>
+                                </div>
+
+                                <img src="images/proyectos/eucaliptos/croquis.webp" alt="Mapa ampliado"
+                                    class="croquis-large">
+
+                                <!-- Right Button: Close -->
+                                <button class="close-btn-croquis" (click)="toggleModal(false)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        }
                     </section>
 
                     <!-- Beneficios Section -->

@@ -1,16 +1,19 @@
 import { Component, signal, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { EucaliptosPlanoComponent } from '../plano/eucaliptos/eucaliptos-plano.component';
 
 @Component({
     selector: 'app-eucaliptos',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+    imports: [CommonModule, RouterLink, EucaliptosPlanoComponent],
     templateUrl: './eucaliptos.component.html',
     styleUrl: './eucaliptos.component.css'
 })
 export class EucaliptosComponent {
     mostrarInputPrefijo = signal(false);
+    showPlano = signal(false);
+    showCroquis = signal(false);
     activeSection = signal('info');
 
     // Gallery Logic (Using same as circunvalacion for now as requested)
@@ -61,6 +64,28 @@ export class EucaliptosComponent {
                 behavior: 'smooth'
             });
         }
+    }
+
+    toggleModal(state: boolean) {
+        this.showCroquis.set(state);
+        if (state) {
+            this.document.body.style.overflow = 'hidden';
+        } else {
+            this.document.body.style.overflow = '';
+        }
+    }
+
+    togglePlano(state: boolean) {
+        this.showPlano.set(state);
+        if (state) {
+            this.document.body.style.overflow = 'hidden';
+        } else {
+            this.document.body.style.overflow = '';
+        }
+    }
+
+    openGoogleMaps() {
+        window.open('https://www.google.com/maps/dir/?api=1&destination=-12.115500,-75.172524', '_blank');
     }
 
     @HostListener('window:scroll', [])

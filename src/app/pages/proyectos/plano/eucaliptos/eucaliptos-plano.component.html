@@ -1,0 +1,117 @@
+<div class="modal-overlay" (click)="onClose()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="map-container" #mapContainer></div>
+
+        <!-- Help Alert Message -->
+        @if (showHelpAlert()) {
+        <div class="map-help-alert">
+            <span>Dale click al lote y conoce sus características y disponibilidad</span>
+            <button class="close-alert-btn" (click)="showHelpAlert.set(false)">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="#ee6666" stroke-width="2" />
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="#ee6666" stroke-width="2" />
+                </svg>
+            </button>
+        </div>
+        }
+
+        <!-- Lot Detail Panel -->
+        @if (getSelectionDetails(); as details) {
+        <div class="lot-detail-panel">
+            <button class="close-panel-btn" (click)="selectedLot.set(null)" aria-label="Cerrar detalles">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#00528c" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <div class="panel-header">
+                <h2 class="panel-title">{{ details.title }}</h2>
+                <p class="panel-subtitle">Mz {{ details.mz }}, Lt {{ details.lt }}</p>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-grid two-cols">
+                    <div class="info-box">
+                        <span class="info-label">Tipología</span>
+                        <span class="info-value">{{ details.tipologia }}</span>
+                    </div>
+                    <div class="info-box condensed">
+                        <span class="info-label">Área</span>
+                        <span class="info-value">{{ details.area }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <div class="section-grid two-cols">
+                    <div class="info-box">
+                        <span class="info-label">Izquierda</span>
+                        <span class="info-value">{{ details.izq }}</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-label">Derecha</span>
+                        <span class="info-value">{{ details.der }}</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-label">Frente</span>
+                        <span class="info-value">{{ details.frente }}</span>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-label">Fondo</span>
+                        <span class="info-value">{{ details.fondo }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+        <!-- Map Navigation Bar -->
+        <div class="map-nav-bar">
+            <button (click)="resetView()" title="Inicio" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                </svg>
+            </button>
+            <div class="nav-separator"></div>
+            <button (click)="pan('left')" title="Izquierda" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                </svg>
+            </button>
+            <button (click)="pan('right')" title="Derecha" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                </svg>
+            </button>
+            <button (click)="pan('up')" title="Arriba" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
+                </svg>
+            </button>
+            <button (click)="pan('down')" title="Abajo" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+                </svg>
+            </button>
+            <div class="nav-separator"></div>
+            <button (click)="zoomMap('in')" title="Acercar" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                </svg>
+            </button>
+            <button (click)="zoomMap('out')" title="Alejar" class="nav-btn">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+                    <path d="M19 13H5v-2h14v2z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+    <button class="close-btn" (click)="onClose()" aria-label="Cerrar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+    </button>
+</div>

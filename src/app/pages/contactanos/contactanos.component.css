@@ -1,1 +1,59 @@
 /* Estilos para el componente de contacto */
+
+.btn-como-llegar-contact {
+    background-color: #00528C;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0, 82, 140, 0.3);
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-size: 1rem;
+}
+
+.btn-como-llegar-contact:hover {
+    background-color: #003f6b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 82, 140, 0.4);
+}
+
+.btn-como-llegar-contact svg {
+    transition: transform 0.2s;
+}
+
+.btn-como-llegar-contact:hover svg {
+    transform: scale(1.1);
+}
+
+.contact-text-block {
+    align-self: flex-start;
+    text-align: left;
+    width: 100%;
+}
+
+.contact-location-label {
+    color: #F9A62E;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+    .contact-location-label {
+        font-size: 1.875rem;
+    }
+}
+
+.contact-location-text {
+    color: #012943;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 100%;
+}

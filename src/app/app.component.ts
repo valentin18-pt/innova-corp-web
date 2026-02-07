@@ -3,19 +3,21 @@ import { RouterOutlet, Router, Event, Scroll } from '@angular/router';
 import { isPlatformBrowser, ViewportScroller } from '@angular/common';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { WhatsAppButtonComponent } from './shared/whatsapp-button/whatsapp-button.component';
 import { initFlowbite } from 'flowbite';
 import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, WhatsAppButtonComponent],
   template: `
     <app-header></app-header>
     <main class="pt-20"> <!-- Added padding for fixed header -->
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
+    <app-whatsapp-button></app-whatsapp-button>
   `
 })
 export class AppComponent implements OnInit {

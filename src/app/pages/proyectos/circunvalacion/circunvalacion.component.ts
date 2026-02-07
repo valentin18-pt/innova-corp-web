@@ -1,16 +1,19 @@
 import { Component, signal, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { CircunvalacionPlanoComponent } from '../plano/circunvalacion/circunvalacion-plano.component';
 
 @Component({
     selector: 'app-circunvalacion',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+    imports: [CommonModule, RouterLink, CircunvalacionPlanoComponent],
     templateUrl: './circunvalacion.component.html',
     styleUrl: './circunvalacion.component.css'
 })
 export class CircunvalacionComponent {
     mostrarInputPrefijo = signal(false);
+    showPlano = signal(false);
+    showCroquis = signal(false);
     activeSection = signal('info');
 
     // Gallery Logic
@@ -19,8 +22,7 @@ export class CircunvalacionComponent {
         'images/proyectos/circunvalacion/galeria2.webp',
         'images/proyectos/circunvalacion/galeria3.webp',
         'images/proyectos/circunvalacion/galeria4.webp',
-        'images/proyectos/circunvalacion/galeria5.webp',
-        'images/proyectos/circunvalacion/galeria6.webp'
+        'images/proyectos/circunvalacion/galeria5.webp'
     ];
     currentGalleryIndex = 0;
 
@@ -32,6 +34,28 @@ export class CircunvalacionComponent {
     onPrefijoChange(event: Event) {
         const select = event.target as HTMLSelectElement;
         this.mostrarInputPrefijo.set(select.value === 'otro');
+    }
+
+    toggleModal(state: boolean) {
+        this.showCroquis.set(state);
+        if (state) {
+            this.document.body.style.overflow = 'hidden';
+        } else {
+            this.document.body.style.overflow = '';
+        }
+    }
+
+    togglePlano(state: boolean) {
+        this.showPlano.set(state);
+        if (state) {
+            this.document.body.style.overflow = 'hidden';
+        } else {
+            this.document.body.style.overflow = '';
+        }
+    }
+
+    openGoogleMaps() {
+        window.open('https://www.google.com/maps/dir/?api=1&destination=-12.118431,-75.171836', '_blank');
     }
 
     nextImage() {

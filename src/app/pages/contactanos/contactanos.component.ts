@@ -16,4 +16,8 @@ export class ContactanosComponent {
         const select = event.target as HTMLSelectElement;
         this.mostrarInputPrefijo.set(select.value === 'otro');
     }
+
+    openGoogleMaps() {
+        window.open('https://www.google.com/maps/dir/?api=1&destination=-12.115297,-75.180342', '_blank');
+    }
 }
